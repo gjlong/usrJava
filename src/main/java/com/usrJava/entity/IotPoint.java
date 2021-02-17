@@ -9,7 +9,7 @@ package com.usrJava.entity;
  */
 public class IotPoint {
     private int id;
-    private int weight;
+    private int weight;//权重（用于排序 可以是负数）
     private String name;//名称
     private String formula;//公式
     private IotPointModbus iotModbusDataCmd;//cmd配置信息
