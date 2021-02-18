@@ -11,8 +11,8 @@ public class DeviceTagResult {
     private int id;
     private int pageNo;
     private int pageSize;
-    private String tagName;
-    private String tagValue;
+    private String tagName;//标签类别
+    private String tagValue;//标签名称
     private String creator;//创建者的用户id
     private int count;//该标签下的设备数量
     private String createDt;//创建日期
