@@ -12,7 +12,7 @@ public class DeviceDetailDataResult {
     private String address;//地址
     private String groupId;//分组id
     private int onlineStatus;//离线状态 0:离线  1:在线
-    private DeviceStatus deviceStatus;
+    private DeviceStatus deviceStatus;//设备状态集合
 
     public String getGroupId() {
         return groupId;

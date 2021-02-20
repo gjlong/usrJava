@@ -8,8 +8,8 @@ package com.usrJava.entity;
  * @date 2020年05月16日 17:10
  */
 public class BaseDataResult {
-    private Long time;
-    private Integer value;
+    private Long time;//时间戳
+    private Integer value;//传感器值
 
     public Long getTime() {
         return time;
