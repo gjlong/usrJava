@@ -10,9 +10,9 @@ package com.usrJava.entity;
 public enum AccessToken {
     INSTANCE;
 
-    private String token;
+    private String token;//登录成功时返回的登录凭证(注意:token有效时间为2小时，两小时内可以重复使用)
     private int expiresIn;
-    private String uid;
+    private String uid;//用户id
 
 
     public String getToken() {
