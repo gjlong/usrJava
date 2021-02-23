@@ -14,13 +14,13 @@ public class Slave {
     private String userId;
     private int pageNo;
     private int pageSize;
-    private int deviceTemplateId;
-    private String slaveIndex;
-    private String slaveName;
+    private int deviceTemplateId;//设备模板编号
+    private String slaveIndex;//从机序号
+    private String slaveName;//从机名称
     private int slaveAddr;//从机地址
     private String comIdx;//从机序号
-    private int relProtocolId;
-    private int weight;
+    private int relProtocolId;//关联协议ID
+    private int weight;//权重（用于排序 可以是负数）
     private String createDt;//从机创建时间
     private String updateDt;//从机数据更新时间
     private List<IotPoint> iotDataDescription;
