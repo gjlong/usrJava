@@ -21,8 +21,8 @@ public class Slave {
     private String comIdx;//从机序号
     private int relProtocolId;
     private int weight;
-    private String createDt;
-    private String updateDt;
+    private String createDt;//从机创建时间
+    private String updateDt;//从机数据更新时间
     private List<IotPoint> iotDataDescription;
 
     public int getId() {
