@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Slave {
     private int id;
-    private String userId;
-    private int pageNo;
-    private int pageSize;
+    private String userId;//用户id
+    private int pageNo;//分页页号（从1开始）
+    private int pageSize;//分页大小
     private int deviceTemplateId;//设备模板编号
     private String slaveIndex;//从机序号
     private String slaveName;//从机名称
