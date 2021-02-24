@@ -9,7 +9,7 @@ package com.usrJava.entity;
  */
 public class AlarmHistoryDataResult {
     private int id;
-    private String deviceId;
+    private String deviceId;//设备id
     private String deviceName;//设备名称
     private String slaveName;//从机名称
     private float alarmValue;//当前报警值 0和1 本来变量类型是int，由于接口返回的数据格式变成0.0，所以更改为float
