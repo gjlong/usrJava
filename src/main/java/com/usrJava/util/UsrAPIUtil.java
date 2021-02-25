@@ -4,7 +4,8 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.usrJava.entity.*;
 import net.sf.json.JSONObject;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
@@ -33,7 +34,7 @@ import java.util.Map;
  */
 @Component("UsrAPIUtil")
 public class UsrAPIUtil {
-    public static Logger log = Logger.getLogger(UsrAPIUtil.class);
+    public static Logger log = LoggerFactory.getLogger(UsrAPIUtil.class);
 
     public final static String ACCESS_TOKEN = "https://api.mp.usr.cn/usrCloud/user/login";//用户登录认证
     public final static String GET_USER_DEVICES_URL="https://api.mp.usr.cn/usrCloud/vn/dev/getDevsForVn";//获取某个用户的设备列表
