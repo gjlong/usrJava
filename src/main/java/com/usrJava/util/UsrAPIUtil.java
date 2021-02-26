@@ -79,7 +79,7 @@ public class UsrAPIUtil {
         Gson gson=new Gson();
         JSONObject jsonObject = httpsRequest(GET_USER_DEVICES_URL, "POST", gson.toJson(paramMap));
         String jsonObjectString=jsonObject.toString();
-        JsonElement jsonElement=new JsonParser().parse(jsonObjectString).getAsJsonObject().get("data").getAsJsonObject().get("devices");
+        JsonElement jsonElement=JsonParser.parseString(jsonObjectString).getAsJsonObject().get("data").getAsJsonObject().get("devices");
         List<Device> deviceList=gson.fromJson(jsonElement,new TypeToken<List<Device>>(){}.getType());
         return deviceList;
     }
