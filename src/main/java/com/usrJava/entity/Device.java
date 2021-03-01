@@ -12,9 +12,9 @@ public class Device {
     private String devid;//设备的SN
     private String name;//设备名称
     private int onlineStatus;//离线状态 0:离线 1:在线
-    private String latitude;
-    private String longitude;
-    private String gpsString;
+    private String latitude;//纬度
+    private String longitude;//经度
+    private String gpsString;//gps坐标对应的地址
 
     public String getId() {
         return id;
