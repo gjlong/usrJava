@@ -194,8 +194,6 @@ public class UsrAPIUtil {
         devDatapointsJsonObject.addProperty("dataPointId",dataPointId);
         devDatapointsJsonObject.addProperty("itemId",itemId);
 
-
-
         JsonArray devDatapointsJsonArray=new JsonArray();
         devDatapointsJsonArray.add(devDatapointsJsonObject);
         paramMap.put("devDatapoints",devDatapointsJsonArray);
