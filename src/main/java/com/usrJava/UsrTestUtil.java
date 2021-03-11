@@ -14,5 +14,7 @@ public class UsrTestUtil {
     public static Logger log = LoggerFactory.getLogger(UsrTestUtil.class);
     public void testLog(){
         log.debug("测试log debug");
+        log.info("测试log info");
+        
     }
 }
