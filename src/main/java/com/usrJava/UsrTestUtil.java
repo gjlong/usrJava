@@ -15,6 +15,6 @@ public class UsrTestUtil {
     public void testLog(){
         log.debug("测试log debug");
         log.info("测试log info");
-        
+        log.error("测试log error");
     }
 }
