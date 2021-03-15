@@ -12,9 +12,10 @@ import org.slf4j.LoggerFactory;
  */
 public class UsrTestUtil {
     public static Logger log = LoggerFactory.getLogger(UsrTestUtil.class);
-    public void testLog(){
+    public void testLog(String logContent){
         log.debug("测试log debug");
         log.info("测试log info");
         log.error("测试log error");
+        log.info(logContent);
     }
 }
