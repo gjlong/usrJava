@@ -1,7 +1,26 @@
 package com.usrJava;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.conn.routing.HttpRoute;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author gjlong
@@ -20,11 +39,34 @@ public class UsrTestUtil {
     }
 
     public static void main(String[] args) {
-        double y=1.0;
-        for(int i=0;i<=1000;i++){
-            double π=3*Math.pow(2, i)*y;
-            System.out.println("第"+i+"次切割,为正"+(6+6*i)+"边形，圆周率π≈"+π);
-            y=Math.sqrt(2-Math.sqrt(4-y*y));
+        try {
+            //设置连接池
+            PoolingHttpClientConnectionManager cm=new PoolingHttpClientConnectionManager();
+            cm.setMaxTotal(200);
+            cm.setDefaultMaxPerRoute(20);
+            HttpHost localhost=new HttpHost("https://www.baidu.com/",80);
+            cm.setMaxPerRoute(new HttpRoute(localhost),50);
+            CloseableHttpClient closeableHttpClient=HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
+
+            CloseableHttpResponse closeableHttpResponse=null;
+
+            Document document=null;
+            //获取cookies
+            HttpClientContext httpClientContext=HttpClientContext.create();
+            HttpGet httpGet=new HttpGet("https://www.baidu.com/");
+            RequestConfig requestConfig=RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+            httpGet.setConfig(requestConfig);
+            closeableHttpResponse=closeableHttpClient.execute(httpGet,httpClientContext);
+            CookieStore cookieStore=httpClientContext.getCookieStore();
+            List<Cookie> cookies=cookieStore.getCookies();
+
+            System.out.println(cookies.size());
+            document=Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet("https://www.baidu.com")).getEntity(),"gb2312"));
+            System.out.println(document);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+
     }
 }
