@@ -17,7 +17,9 @@ public class UsrTestUtil {
         log.info("测试log info");
         log.error("测试log error");
         log.info(logContent);
+    }
 
+    public static void main(String[] args) {
         double y=1.0;
         for(int i=0;i<=1000;i++){
             double π=3*Math.pow(2, i)*y;
