@@ -15,6 +15,8 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,12 +41,14 @@ public class UsrTestUtil {
     }
 
     public static void main(String[] args) {
+        String url="https://www.huanqiu.com/";
+        String hostname=url;
         try {
             //设置连接池
             PoolingHttpClientConnectionManager cm=new PoolingHttpClientConnectionManager();
             cm.setMaxTotal(200);
             cm.setDefaultMaxPerRoute(20);
-            HttpHost localhost=new HttpHost("https://www.baidu.com/",80);
+            HttpHost localhost=new HttpHost(hostname,80);
             cm.setMaxPerRoute(new HttpRoute(localhost),50);
             CloseableHttpClient closeableHttpClient=HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
 
@@ -53,7 +57,7 @@ public class UsrTestUtil {
             Document document=null;
             //获取cookies
             HttpClientContext httpClientContext=HttpClientContext.create();
-            HttpGet httpGet=new HttpGet("https://www.baidu.com/");
+            HttpGet httpGet=new HttpGet(url);
             RequestConfig requestConfig=RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
             httpGet.setConfig(requestConfig);
             closeableHttpResponse=closeableHttpClient.execute(httpGet,httpClientContext);
@@ -61,8 +65,12 @@ public class UsrTestUtil {
             List<Cookie> cookies=cookieStore.getCookies();
 
             System.out.println(cookies.size());
-            document=Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet("https://www.baidu.com")).getEntity(),"gb2312"));
-            System.out.println(document);
+            document=Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(),"gb2312"));
+            Elements elements=document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
+            for(Element t :elements){
+                //System.out.println(t);
+                System.out.println(t.select("a"));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
