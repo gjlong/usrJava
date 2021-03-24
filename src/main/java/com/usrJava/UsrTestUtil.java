@@ -70,6 +70,7 @@ public class UsrTestUtil {
             for(Element t :elements){
                 //System.out.println(t);
                 System.out.println(t.select("a"));
+                System.out.println(t.select("a").html());
             }
         } catch (IOException e) {
             e.printStackTrace();
