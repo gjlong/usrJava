@@ -64,7 +64,7 @@ public class UsrTestUtil {
             CookieStore cookieStore=httpClientContext.getCookieStore();
             List<Cookie> cookies=cookieStore.getCookies();
 
-            System.out.println(cookies.size());
+            //System.out.println(cookies.size());
             document=Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(),"gb2312"));
             Elements elements=document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
 
