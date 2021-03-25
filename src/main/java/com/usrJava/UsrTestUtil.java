@@ -67,10 +67,14 @@ public class UsrTestUtil {
             System.out.println(cookies.size());
             document=Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(),"gb2312"));
             Elements elements=document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
+
             for(Element t :elements){
-                //System.out.println(t);
-                System.out.println(t.select("a"));
-                System.out.println(t.select("a").html());
+                for(Element temp :t.select("a")){
+                    System.out.println(temp.attr("href"));
+                    System.out.println(temp.text());
+                    //System.out.println(temp.html());
+                }
+
             }
         } catch (IOException e) {
             e.printStackTrace();
