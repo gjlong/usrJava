@@ -90,10 +90,11 @@ public class UsrTestUtil {
             String opinionUrl="https://opinion.huanqiu.com/api/list2?node=/e3pmub6h5/e3prafm0g&offset=0&limit=20";
             String opinionJsonString=EntityUtils.toString(closeableHttpClient.execute(new HttpGet(opinionUrl)).getEntity(),"gb2312");
             JsonArray jsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("list").getAsJsonArray();
+            System.out.println(jsonArray.size());
             for(JsonElement e:jsonArray){
-                System.out.println(e.getAsJsonObject());
+                //System.out.println(e.getAsJsonObject());
                 System.out.println(e.getAsJsonObject().get("title"));
-
+                System.out.println(e.getAsJsonObject().get("summary"));
             }
         } catch (IOException e) {
             e.printStackTrace();
