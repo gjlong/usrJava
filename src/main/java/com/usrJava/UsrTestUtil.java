@@ -76,7 +76,7 @@ public class UsrTestUtil {
                 }
             }
             //社评板块
-            System.out.println(document.getElementsByClass("leftSec"));
+            System.out.println(document.getElementsByClass("leftSec").first().getElementsByClass("commentDetail").first().getElementsByClass("commentNews"));
 
         } catch (IOException e) {
             e.printStackTrace();
