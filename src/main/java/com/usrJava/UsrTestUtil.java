@@ -69,14 +69,21 @@ public class UsrTestUtil {
             Elements elements=document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
             //右侧新闻
             for(Element t :elements){
-                for(Element temp :t.select("a")){
+                for(Element temp:t.select("a")){
                     System.out.println(temp.attr("href"));
                     System.out.println(temp.text());
                     //System.out.println(temp.html());
                 }
             }
+            System.out.println("社评模块信息");
             //社评板块
-            System.out.println(document.getElementsByClass("leftSec").first().getElementsByClass("commentDetail").first().getElementsByClass("commentNews"));
+            Elements commentNewsElement=document.getElementsByClass("leftSec").first().getElementsByClass("commentDetail").first().getElementsByClass("commentNews");
+            for(Element t:commentNewsElement) {
+                for (Element temp : t.select("a")) {
+                    System.out.println(temp.attr("href"));
+                    System.out.println(temp.text());
+                }
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
