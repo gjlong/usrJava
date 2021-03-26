@@ -1,5 +1,6 @@
 package com.usrJava;
 
+import com.google.gson.*;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.client.CookieStore;
@@ -75,8 +76,8 @@ public class UsrTestUtil {
                     //System.out.println(temp.html());
                 }
             }
-            System.out.println("社评模块信息");
-            //社评板块
+            System.out.println("最新评论模块信息");
+            //最新评论板块
             Elements commentNewsElement=document.getElementsByClass("leftSec").first().getElementsByClass("commentDetail").first().getElementsByClass("commentNews");
             for(Element t:commentNewsElement) {
                 for (Element temp : t.select("a")) {
@@ -84,7 +85,16 @@ public class UsrTestUtil {
                     System.out.println(temp.text());
                 }
             }
+            //社评集板块
+            System.out.println("社评集模块信息");
+            String opinionUrl="https://opinion.huanqiu.com/api/list2?node=/e3pmub6h5/e3prafm0g&offset=0&limit=20";
+            String opinionJsonString=EntityUtils.toString(closeableHttpClient.execute(new HttpGet(opinionUrl)).getEntity(),"gb2312");
+            JsonArray jsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("list").getAsJsonArray();
+            for(JsonElement e:jsonArray){
+                System.out.println(e.getAsJsonObject());
+                System.out.println(e.getAsJsonObject().get("title"));
 
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
