@@ -67,15 +67,17 @@ public class UsrTestUtil {
             //System.out.println(cookies.size());
             document=Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(),"gb2312"));
             Elements elements=document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
-
+            //右侧新闻
             for(Element t :elements){
                 for(Element temp :t.select("a")){
                     System.out.println(temp.attr("href"));
                     System.out.println(temp.text());
                     //System.out.println(temp.html());
                 }
-
             }
+            //社评板块
+            System.out.println(document.getElementsByClass("leftSec"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
