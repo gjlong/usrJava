@@ -92,7 +92,7 @@ public class UsrTestUtil {
             JsonArray jsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("list").getAsJsonArray();
             System.out.println(jsonArray.size());
             for(JsonElement e:jsonArray){
-                //System.out.println(e.getAsJsonObject());
+                System.out.println(e);
                 System.out.println(e.getAsJsonObject().get("title"));
                 System.out.println(e.getAsJsonObject().get("summary"));
             }
