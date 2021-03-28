@@ -92,9 +92,17 @@ public class UsrTestUtil {
             JsonArray jsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("list").getAsJsonArray();
             System.out.println(jsonArray.size());
             for(JsonElement e:jsonArray){
-                System.out.println(e);
-                System.out.println(e.getAsJsonObject().get("title"));
-                System.out.println(e.getAsJsonObject().get("summary"));
+
+                    System.out.println(e);
+                    if(e.isJsonNull()){
+                        System.out.println("");
+                    }
+                    System.out.println("https://opinion.huanqiu.com/article/" );
+                    System.out.println(e.getAsJsonObject().get("title"));
+                    System.out.println(e.getAsJsonObject().get("summary"));
+
+
+
             }
         } catch (IOException e) {
             e.printStackTrace();
