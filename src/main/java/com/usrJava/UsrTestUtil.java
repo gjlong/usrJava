@@ -34,7 +34,8 @@ import java.util.List;
  */
 public class UsrTestUtil {
     public static Logger log = LoggerFactory.getLogger(UsrTestUtil.class);
-    public void testLog(String logContent){
+
+    public void testLog(String logContent) {
         log.debug("测试log debug");
         log.info("测试log info");
         log.error("测试log error");
@@ -42,35 +43,35 @@ public class UsrTestUtil {
     }
 
     public static void main(String[] args) {
-        String url="https://www.huanqiu.com/";
-        String hostname=url;
+        String url = "https://www.huanqiu.com/";
+        String hostname = url;
         try {
             //设置连接池
-            PoolingHttpClientConnectionManager cm=new PoolingHttpClientConnectionManager();
+            PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
             cm.setMaxTotal(200);
             cm.setDefaultMaxPerRoute(20);
-            HttpHost localhost=new HttpHost(hostname,80);
-            cm.setMaxPerRoute(new HttpRoute(localhost),50);
-            CloseableHttpClient closeableHttpClient=HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
+            HttpHost localhost = new HttpHost(hostname, 80);
+            cm.setMaxPerRoute(new HttpRoute(localhost), 50);
+            CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
 
-            CloseableHttpResponse closeableHttpResponse=null;
+            CloseableHttpResponse closeableHttpResponse = null;
 
-            Document document=null;
+            Document document = null;
             //获取cookies
-            HttpClientContext httpClientContext=HttpClientContext.create();
-            HttpGet httpGet=new HttpGet(url);
-            RequestConfig requestConfig=RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+            HttpClientContext httpClientContext = HttpClientContext.create();
+            HttpGet httpGet = new HttpGet(url);
+            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
             httpGet.setConfig(requestConfig);
-            closeableHttpResponse=closeableHttpClient.execute(httpGet,httpClientContext);
-            CookieStore cookieStore=httpClientContext.getCookieStore();
-            List<Cookie> cookies=cookieStore.getCookies();
+            closeableHttpResponse = closeableHttpClient.execute(httpGet, httpClientContext);
+            CookieStore cookieStore = httpClientContext.getCookieStore();
+            List<Cookie> cookies = cookieStore.getCookies();
 
             //System.out.println(cookies.size());
-            document=Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(),"gb2312"));
-            Elements elements=document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
+            document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
+            Elements elements = document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
             //右侧新闻
-            for(Element t :elements){
-                for(Element temp:t.select("a")){
+            for (Element t : elements) {
+                for (Element temp : t.select("a")) {
                     System.out.println(temp.attr("href"));
                     System.out.println(temp.text());
                     //System.out.println(temp.html());
@@ -78,8 +79,8 @@ public class UsrTestUtil {
             }
             System.out.println("最新评论模块信息");
             //最新评论板块
-            Elements commentNewsElement=document.getElementsByClass("leftSec").first().getElementsByClass("commentDetail").first().getElementsByClass("commentNews");
-            for(Element t:commentNewsElement) {
+            Elements commentNewsElement = document.getElementsByClass("leftSec").first().getElementsByClass("commentDetail").first().getElementsByClass("commentNews");
+            for (Element t : commentNewsElement) {
                 for (Element temp : t.select("a")) {
                     System.out.println(temp.attr("href"));
                     System.out.println(temp.text());
@@ -87,20 +88,16 @@ public class UsrTestUtil {
             }
             //社评集板块
             System.out.println("社评集模块信息");
-            String opinionUrl="https://opinion.huanqiu.com/api/list2?node=/e3pmub6h5/e3prafm0g&offset=0&limit=20";
-            String opinionJsonString=EntityUtils.toString(closeableHttpClient.execute(new HttpGet(opinionUrl)).getEntity(),"gb2312");
-            JsonArray jsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("list").getAsJsonArray();
+            String opinionUrl = "https://opinion.huanqiu.com/api/list2?node=/e3pmub6h5/e3prafm0g&offset=0&limit=20";
+            String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(opinionUrl)).getEntity(), "gb2312");
+            JsonArray jsonArray = JsonParser.parseString(opinionJsonString).getAsJsonObject().get("list").getAsJsonArray();
             System.out.println(jsonArray.size());
-            for(JsonElement e:jsonArray){
-
-                    if(e.getAsJsonObject().get("aid")!=null){
-                        System.out.println("https://opinion.huanqiu.com/article/"+e.getAsJsonObject().get("aid").getAsString());
-                    }
+            for (JsonElement e : jsonArray) {
+                if (e.getAsJsonObject().get("aid") != null) {
+                    System.out.println("https://opinion.huanqiu.com/article/" + e.getAsJsonObject().get("aid").getAsString());
                     System.out.println(e.getAsJsonObject().get("title"));
                     System.out.println(e.getAsJsonObject().get("summary"));
-
-
-
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
