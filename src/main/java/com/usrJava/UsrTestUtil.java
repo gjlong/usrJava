@@ -93,11 +93,9 @@ public class UsrTestUtil {
             System.out.println(jsonArray.size());
             for(JsonElement e:jsonArray){
 
-                    System.out.println(e);
-                    if(e.isJsonNull()){
-                        System.out.println("");
+                    if(e.getAsJsonObject().get("aid")!=null){
+                        System.out.println("https://opinion.huanqiu.com/article/"+e.getAsJsonObject().get("aid").getAsString());
                     }
-                    System.out.println("https://opinion.huanqiu.com/article/" );
                     System.out.println(e.getAsJsonObject().get("title"));
                     System.out.println(e.getAsJsonObject().get("summary"));
 
