@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -101,7 +102,15 @@ public class UsrTestUtil {
                     System.out.println("https://opinion.huanqiu.com/article/" + e.getAsJsonObject().get("aid").getAsString());
                     System.out.println(e.getAsJsonObject().get("title"));
                     System.out.println(e.getAsJsonObject().get("summary"));
+                    contentMap.put("https://opinion.huanqiu.com/article/" + e.getAsJsonObject().get("aid").getAsString(),e.getAsJsonObject().get("title").getAsString());
                 }
+            }
+
+            Iterator<Map.Entry<String,String>> entries=contentMap.entrySet().iterator();
+            while(entries.hasNext()){
+                Map.Entry<String,String> entryTemp=entries.next();
+                System.out.println(entryTemp.getKey());
+                System.out.println(entryTemp.getValue());
             }
         } catch (IOException e) {
             e.printStackTrace();
