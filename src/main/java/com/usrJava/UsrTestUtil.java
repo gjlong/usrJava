@@ -106,6 +106,7 @@ public class UsrTestUtil {
                 }
             }
 
+            //泛型迭代器遍历数据
             Iterator<Map.Entry<String,String>> entries=contentMap.entrySet().iterator();
             while(entries.hasNext()){
                 Map.Entry<String,String> entryTemp=entries.next();
