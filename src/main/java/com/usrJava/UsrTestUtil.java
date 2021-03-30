@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author gjlong
@@ -45,6 +46,7 @@ public class UsrTestUtil {
     public static void main(String[] args) {
         String url = "https://www.huanqiu.com/";
         String hostname = url;
+        Map<String,String> contentMap=new HashMap<>();
         try {
             //设置连接池
             PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
@@ -74,6 +76,7 @@ public class UsrTestUtil {
                 for (Element temp : t.select("a")) {
                     System.out.println(temp.attr("href"));
                     System.out.println(temp.text());
+                    contentMap.put(temp.attr("href"),temp.text());
                     //System.out.println(temp.html());
                 }
             }
@@ -84,6 +87,7 @@ public class UsrTestUtil {
                 for (Element temp : t.select("a")) {
                     System.out.println(temp.attr("href"));
                     System.out.println(temp.text());
+                    contentMap.put(temp.attr("href"),temp.text());
                 }
             }
             //社评集板块
