@@ -275,6 +275,9 @@ public class UsrTestUtil {
 
     }
 
+    public void getNewWeibo(){
+
+    }
 
     public static void main(String[] args) {
         UsrTestUtil usrTestUtil=new UsrTestUtil();
