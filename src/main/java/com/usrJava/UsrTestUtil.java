@@ -275,8 +275,9 @@ public class UsrTestUtil {
 
     }
 
+    //获取新版微博
     public void getNewWeibo(){
-
+        String url="";
     }
 
     public static void main(String[] args) {
