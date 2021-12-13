@@ -280,6 +280,7 @@ public class UsrTestUtil {
         String url="https://weibo.com/login.php";
         String hostname = url;
         //设置连接池
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
     }
 
     public static void main(String[] args) {
