@@ -278,7 +278,8 @@ public class UsrTestUtil {
     //获取新版微博
     public void getNewWeibo(){
         String url="https://weibo.com/login.php";
-        
+        String hostname = url;
+        //设置连接池
     }
 
     public static void main(String[] args) {
