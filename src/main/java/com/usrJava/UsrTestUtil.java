@@ -279,12 +279,8 @@ public class UsrTestUtil {
     public void getNewWeibo(){
         String url="https://weibo.com/login.php";
         String hostname = url;
-        //设置连接池
-        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
-        cm.setMaxTotal(100);
-        cm.setDefaultMaxPerRoute(20);
-        HttpHost localhost = new HttpHost(hostname, 80);
-        cm.setMaxPerRoute(new HttpRoute(localhost), 50);
+        Map<String,String> contentMap=new HashMap<>();
+        
 
 
     }
