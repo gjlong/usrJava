@@ -280,7 +280,14 @@ public class UsrTestUtil {
         String url="https://weibo.com/login.php";
         String hostname = url;
         Map<String,String> contentMap=new HashMap<>();
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+        cm.setMaxTotal(200);
+        cm.setDefaultMaxPerRoute(20);
+        HttpHost localhost = new HttpHost(hostname, 80);
+        cm.setMaxPerRoute(new HttpRoute(localhost), 50);
+        CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
 
+        CloseableHttpResponse closeableHttpResponse = null;
 
 
     }
