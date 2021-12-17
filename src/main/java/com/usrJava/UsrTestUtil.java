@@ -289,6 +289,10 @@ public class UsrTestUtil {
 
         CloseableHttpResponse closeableHttpResponse = null;
 
+        Document document = null;
+        //获取cookies
+        HttpClientContext httpClientContext = HttpClientContext.create();
+        HttpGet httpGet = new HttpGet(url);
 
     }
 
