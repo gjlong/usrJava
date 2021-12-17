@@ -42,7 +42,7 @@ import java.util.concurrent.LinkedBlockingDeque;
  */
 public class UsrTestUtil {
     public static Logger log = LoggerFactory.getLogger(UsrTestUtil.class);
-    private UrlsService urlsService=new UrlsServiceImpl();
+    private UrlsService urlsService = new UrlsServiceImpl();
 
     public void testLog(String logContent) {
         log.debug("测试log debug");
@@ -51,33 +51,33 @@ public class UsrTestUtil {
         log.info(logContent);
     }
 
-    public class GetThread extends Thread{
+    public class GetThread extends Thread {
         private final CloseableHttpClient closeableHttpClient;
         private final HttpContext httpContext;
         private final HttpGet httpGet;
         private BlockingQueue<String> blockingQueue;
-        private Map<String,Integer> urlMap;
+        private Map<String, Integer> urlMap;
 
-        public GetThread(CloseableHttpClient closeableHttpClient, HttpGet httpGet,BlockingQueue<String> blockingQueue,Map<String,Integer> urlMap) {
+        public GetThread(CloseableHttpClient closeableHttpClient, HttpGet httpGet, BlockingQueue<String> blockingQueue, Map<String, Integer> urlMap) {
             this.closeableHttpClient = closeableHttpClient;
             this.httpContext = HttpClientContext.create();
             this.httpGet = httpGet;
-            this.blockingQueue=blockingQueue;
-            this.urlMap=urlMap;
+            this.blockingQueue = blockingQueue;
+            this.urlMap = urlMap;
         }
 
         @Override
         public void run() {
             try {
-                while(true) {
+                while (true) {
                     System.out.println("线程id：" + Thread.currentThread().getName());
-                    System.out.println("当前队列大小："+blockingQueue.size());
-                    System.out.println("当前map集合大小："+urlMap.size());
+                    System.out.println("当前队列大小：" + blockingQueue.size());
+                    System.out.println("当前map集合大小：" + urlMap.size());
                     //获取队列的url
                     String url = blockingQueue.take();
                     System.out.println("当前执行的url：" + url);
-                    url=StringUtils.remove(url,"#");
-                    if(url.isEmpty()==false && StringUtils.contains(url,"mailto:")==false) {
+                    url = StringUtils.remove(url, "#");
+                    if (url.isEmpty() == false && StringUtils.contains(url, "mailto:") == false) {
                         HttpGet httpGet = new HttpGet(url);
                         RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(6000).setConnectTimeout(5000).build();
                         httpGet.setConfig(requestConfig);
@@ -94,18 +94,18 @@ public class UsrTestUtil {
                             for (Element t : elements) {
                                 //System.out.println(t.attr("abs:href"));
                                 //判断该url是否已经记录
-                                tempUrl=t.attr("abs:href");
-                                if(urlMap.containsKey(tempUrl)==false){
-                                    urlMap.put(tempUrl,1);
+                                tempUrl = t.attr("abs:href");
+                                if (urlMap.containsKey(tempUrl) == false) {
+                                    urlMap.put(tempUrl, 1);
                                     blockingQueue.put(tempUrl);
                                 }
 
                             }
 
-                            Urls urls=new Urls();
+                            Urls urls = new Urls();
                             urls.setUrl(url);
                             urls.setDatetime(new Date());
-                            if(urlsService.deleteSampleUrls(url)==false) {
+                            if (urlsService.deleteSampleUrls(url) == false) {
                                 urlsService.addUrlsBySingleSession(urls);
                             }
 
@@ -132,10 +132,10 @@ public class UsrTestUtil {
         }
     }
 
-    public void getHuanQiuNewsList(){
+    public void getHuanQiuNewsList() {
         String url = "https://www.huanqiu.com/";
         String hostname = url;
-        Map<String,String> contentMap=new HashMap<>();
+        Map<String, String> contentMap = new HashMap<>();
         try {
             //设置连接池
             PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
@@ -165,7 +165,7 @@ public class UsrTestUtil {
                 for (Element temp : t.select("a")) {
                     System.out.println(temp.attr("href"));
                     System.out.println(temp.text());
-                    contentMap.put(temp.attr("href"),temp.text());
+                    contentMap.put(temp.attr("href"), temp.text());
                     //System.out.println(temp.html());
                 }
             }
@@ -176,7 +176,7 @@ public class UsrTestUtil {
                 for (Element temp : t.select("a")) {
                     System.out.println(temp.attr("href"));
                     System.out.println(temp.text());
-                    contentMap.put(temp.attr("href"),temp.text());
+                    contentMap.put(temp.attr("href"), temp.text());
                 }
             }
             //社评集板块
@@ -190,14 +190,14 @@ public class UsrTestUtil {
                     System.out.println("https://opinion.huanqiu.com/article/" + e.getAsJsonObject().get("aid").getAsString());
                     System.out.println(e.getAsJsonObject().get("title"));
                     System.out.println(e.getAsJsonObject().get("summary"));
-                    contentMap.put("https://opinion.huanqiu.com/article/" + e.getAsJsonObject().get("aid").getAsString(),e.getAsJsonObject().get("title").getAsString());
+                    contentMap.put("https://opinion.huanqiu.com/article/" + e.getAsJsonObject().get("aid").getAsString(), e.getAsJsonObject().get("title").getAsString());
                 }
             }
 
             //泛型迭代器遍历数据
-            Iterator<Map.Entry<String,String>> entries=contentMap.entrySet().iterator();
-            while(entries.hasNext()){
-                Map.Entry<String,String> entryTemp=entries.next();
+            Iterator<Map.Entry<String, String>> entries = contentMap.entrySet().iterator();
+            while (entries.hasNext()) {
+                Map.Entry<String, String> entryTemp = entries.next();
                 System.out.println(entryTemp.getKey());
                 System.out.println(entryTemp.getValue());
             }
@@ -221,7 +221,7 @@ public class UsrTestUtil {
         }
     }
 
-    public void getWebHtml(){
+    public void getWebHtml() {
 
         try {
             String url = "https://www.huanqiu.com/";
@@ -249,23 +249,23 @@ public class UsrTestUtil {
             List<Cookie> cookies = cookieStore.getCookies();
 
 
-            BlockingQueue<String> blockingQueue=new LinkedBlockingDeque<>();
+            BlockingQueue<String> blockingQueue = new LinkedBlockingDeque<>();
             blockingQueue.put("https://www.huanqiu.com/");
             //创建hashmap记录url地址访问状态
-            Map<String,Integer> urlMap= Collections.synchronizedMap(new HashMap<String,Integer>());
+            Map<String, Integer> urlMap = Collections.synchronizedMap(new HashMap<String, Integer>());
 
             //System.out.println(blockingQueue.take());
 
-            GetThread[] getThreads=new GetThread[20];
-            for(int threadNum=0;threadNum<getThreads.length;threadNum++){
-                httpGet=new HttpGet();
+            GetThread[] getThreads = new GetThread[20];
+            for (int threadNum = 0; threadNum < getThreads.length; threadNum++) {
+                httpGet = new HttpGet();
                 httpGet.setConfig(requestConfig);
-                getThreads[threadNum]=new GetThread(closeableHttpClient,httpGet,blockingQueue,urlMap);
+                getThreads[threadNum] = new GetThread(closeableHttpClient, httpGet, blockingQueue, urlMap);
             }
-            for(int startThreadNum=0;startThreadNum<getThreads.length;startThreadNum++){
+            for (int startThreadNum = 0; startThreadNum < getThreads.length; startThreadNum++) {
                 getThreads[startThreadNum].start();
             }
-            for(int joinThreadNum=0;joinThreadNum<getThreads.length;joinThreadNum++){
+            for (int joinThreadNum = 0; joinThreadNum < getThreads.length; joinThreadNum++) {
                 getThreads[joinThreadNum].join();
             }
         } catch (IOException | InterruptedException e) {
@@ -276,28 +276,38 @@ public class UsrTestUtil {
     }
 
     //获取新版微博
-    public void getNewWeibo(){
-        String url="https://weibo.com/login.php";
-        String hostname = url;
-        Map<String,String> contentMap=new HashMap<>();
-        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
-        cm.setMaxTotal(200);
-        cm.setDefaultMaxPerRoute(20);
-        HttpHost localhost = new HttpHost(hostname, 80);
-        cm.setMaxPerRoute(new HttpRoute(localhost), 50);
-        CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
+    public void getNewWeibo() {
+        try {
+            String url = "https://weibo.com/login.php";
+            String hostname = url;
+            Map<String, String> contentMap = new HashMap<>();
+            PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+            cm.setMaxTotal(200);
+            cm.setDefaultMaxPerRoute(20);
+            HttpHost localhost = new HttpHost(hostname, 80);
+            cm.setMaxPerRoute(new HttpRoute(localhost), 50);
+            CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
 
-        CloseableHttpResponse closeableHttpResponse = null;
+            CloseableHttpResponse closeableHttpResponse = null;
 
-        Document document = null;
-        //获取cookies
-        HttpClientContext httpClientContext = HttpClientContext.create();
-        HttpGet httpGet = new HttpGet(url);
+            Document document = null;
+            //获取cookies
+            HttpClientContext httpClientContext = HttpClientContext.create();
+            HttpGet httpGet = new HttpGet(url);
+            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+            httpGet.setConfig(requestConfig);
 
+
+            closeableHttpResponse = closeableHttpClient.execute(httpGet, httpClientContext);
+            CookieStore cookieStore = httpClientContext.getCookieStore();
+            List<Cookie> cookies = cookieStore.getCookies();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
-        UsrTestUtil usrTestUtil=new UsrTestUtil();
+        UsrTestUtil usrTestUtil = new UsrTestUtil();
         usrTestUtil.getWebHtml();
     }
 }
