@@ -303,6 +303,7 @@ public class UsrTestUtil {
             List<Cookie> cookies = cookieStore.getCookies();
             document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
             System.out.println(document);
+            Elements elements = document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
 
 
         } catch (IOException e) {
