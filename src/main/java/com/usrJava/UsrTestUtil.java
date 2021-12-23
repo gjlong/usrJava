@@ -301,6 +301,7 @@ public class UsrTestUtil {
             closeableHttpResponse = closeableHttpClient.execute(httpGet, httpClientContext);
             CookieStore cookieStore = httpClientContext.getCookieStore();
             List<Cookie> cookies = cookieStore.getCookies();
+            //发起请求，获取页面数据
             document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
             System.out.println(document);
             Elements elements = document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
