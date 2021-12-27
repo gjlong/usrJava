@@ -304,8 +304,8 @@ public class UsrTestUtil {
             //发起请求，获取页面数据
             document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
             System.out.println(document);
-            Elements elements = document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
-
+            Elements elements = document.getElementsByClass("script charset=");
+            System.out.println(elements);
 
         } catch (IOException e) {
             e.printStackTrace();
