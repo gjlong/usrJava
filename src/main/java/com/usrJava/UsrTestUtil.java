@@ -306,7 +306,7 @@ public class UsrTestUtil {
             //System.out.println(document);
             Elements elements = document.select("script[charset]");
             System.out.println(elements.html());
-            //System.out.println(elements);
+            //改用htmlunit
 
         } catch (IOException e) {
             e.printStackTrace();
