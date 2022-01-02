@@ -307,7 +307,9 @@ public class UsrTestUtil {
             Elements elements = document.select("script[charset]");
             System.out.println(elements.html());
             //改用htmlunit
-
+            //FM.view({"ns":"plc_unlogin_home_main","domid":"plc_unlogin_home_main","css":[],"js":[],"html":"<div class=\"WB_frame_c\">\r\n
+            //解析该内容
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
