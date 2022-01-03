@@ -40,6 +40,7 @@ import java.util.concurrent.LinkedBlockingDeque;
  * @Description: 添加描述
  * @date 2021年03月06日 上午9:30
  */
+
 public class UsrTestUtil {
     public static Logger log = LoggerFactory.getLogger(UsrTestUtil.class);
     private UrlsService urlsService = new UrlsServiceImpl();
@@ -309,14 +310,16 @@ public class UsrTestUtil {
             //改用htmlunit
             //FM.view({"ns":"plc_unlogin_home_main","domid":"plc_unlogin_home_main","css":[],"js":[],"html":"<div class=\"WB_frame_c\">\r\n
             //解析该内容
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    
     public static void main(String[] args) {
         UsrTestUtil usrTestUtil = new UsrTestUtil();
-        usrTestUtil.getNewWeibo();
+        //usrTestUtil.getNewWeibo();
+
     }
 }
