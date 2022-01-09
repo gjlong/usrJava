@@ -1,6 +1,7 @@
 package com.usrJava;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.google.gson.JsonArray;
@@ -309,14 +310,16 @@ public class UsrTestUtil {
             document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
             //System.out.println(document);
             Elements elements = document.select("script[charset]");
-            System.out.println(elements.html());
+            //System.out.println(elements.html());
 
             //FM.view({"ns":"plc_unlogin_home_main","domid":"plc_unlogin_home_main","css":[],"js":[],"html":"<div class=\"WB_frame_c\">\r\n
             //解析该内容
             //改用htmlunit
             WebClient webClient=new WebClient(BrowserVersion.CHROME);
+            /*webClient.getOptions().setJavaScriptEnabled(true);
+            webClient.setAjaxController(new NicelyResynchronizingAjaxController());*/
             HtmlPage htmlPage=webClient.getPage("https://weibo.com/login.php");
-            System.out.println(htmlPage);
+            System.out.println(htmlPage.asXml());
 
 
         } catch (IOException e) {
@@ -327,7 +330,7 @@ public class UsrTestUtil {
 
     public static void main(String[] args) {
         UsrTestUtil usrTestUtil = new UsrTestUtil();
-        //usrTestUtil.getNewWeibo();
+        usrTestUtil.getNewWeibo();
 
     }
 }
