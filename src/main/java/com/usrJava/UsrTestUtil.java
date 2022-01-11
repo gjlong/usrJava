@@ -319,6 +319,7 @@ public class UsrTestUtil {
             /*webClient.getOptions().setJavaScriptEnabled(true);
             webClient.setAjaxController(new NicelyResynchronizingAjaxController());*/
             HtmlPage htmlPage=webClient.getPage("https://weibo.com/login.php");
+            webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
             System.out.println(htmlPage.asXml());
 
 
