@@ -307,11 +307,11 @@ public class UsrTestUtil {
             CookieStore cookieStore = httpClientContext.getCookieStore();
             List<Cookie> cookies = cookieStore.getCookies();
             //发起请求，获取页面数据
-            document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
-            System.out.println(document);
-            String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(opinionUrl)).getEntity(), "gb2312");
-            JsonArray jsonArray = JsonParser.parseString(opinionJsonString).getAsJsonObject().get("list").getAsJsonArray();
-            JsonParser.parseString(techJsonString);
+//            document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
+//            System.out.println(document);
+            String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312");
+
+            System.out.println(JsonParser.parseString(opinionJsonString).getAsJsonObject());
             Elements elements = document.select("script[charset]");
             //System.out.println(elements.html());
 
