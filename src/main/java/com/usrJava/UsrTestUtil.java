@@ -283,7 +283,7 @@ public class UsrTestUtil {
     //获取新版微博
     public void getNewWeibo() {
         try {
-            String url = "https://weibo.com/login.php";
+            String url = "https://weibo.com/ajax/side/hotSearch";
             String hostname = url;
             Map<String, String> contentMap = new HashMap<>();
             PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
@@ -308,7 +308,10 @@ public class UsrTestUtil {
             List<Cookie> cookies = cookieStore.getCookies();
             //发起请求，获取页面数据
             document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
-            //System.out.println(document);
+            System.out.println(document);
+            String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(opinionUrl)).getEntity(), "gb2312");
+            JsonArray jsonArray = JsonParser.parseString(opinionJsonString).getAsJsonObject().get("list").getAsJsonArray();
+            JsonParser.parseString(techJsonString);
             Elements elements = document.select("script[charset]");
             //System.out.println(elements.html());
 
