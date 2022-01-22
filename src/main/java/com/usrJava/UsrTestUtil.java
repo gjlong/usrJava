@@ -309,11 +309,12 @@ public class UsrTestUtil {
             //发起请求，获取页面数据
 //            document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
 //            System.out.println(document);
+//            Elements elements = document.select("script[charset]");
+//            System.out.println(elements.html());
             String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312");
-
-            System.out.println(JsonParser.parseString(opinionJsonString).getAsJsonObject());
-            Elements elements = document.select("script[charset]");
-            //System.out.println(elements.html());
+            System.out.println(opinionJsonString);
+            System.out.println(JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("hotgov"));
+            System.out.println(JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("realtime").getAsJsonArray().size());
 
             //FM.view({"ns":"plc_unlogin_home_main","domid":"plc_unlogin_home_main","css":[],"js":[],"html":"<div class=\"WB_frame_c\">\r\n
             //解析该内容
