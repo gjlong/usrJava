@@ -325,6 +325,7 @@ public class UsrTestUtil {
             HtmlPage htmlPage=webClient.getPage("https://weibo.com/login.php");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
             System.out.println(htmlPage.asXml());
+            //直接获取接口的数据
 
 
         } catch (IOException e) {
