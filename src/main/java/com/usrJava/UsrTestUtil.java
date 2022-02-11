@@ -283,7 +283,7 @@ public class UsrTestUtil {
     //获取新版微博
     public void getNewWeibo() {
         try {
-            String url = "https://weibo.com/ajax/side/hotSearch";
+            String url = "https://weibo.com/ajax/side/hotSearch";//直接获取热搜接口的数据
             String hostname = url;
             Map<String, String> contentMap = new HashMap<>();
             PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
@@ -325,7 +325,7 @@ public class UsrTestUtil {
             HtmlPage htmlPage=webClient.getPage("https://weibo.com/login.php");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
             System.out.println(htmlPage.asXml());
-            //直接获取接口的数据
+
 
 
         } catch (IOException e) {
