@@ -314,7 +314,7 @@ public class UsrTestUtil {
             String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312");
             System.out.println(opinionJsonString);
             String hotgovJsonElement=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("hotgov").getAsString();
-            System.out.println(JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("realtime").getAsJsonArray().size());
+            JsonArray realtimeJsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("realtime").getAsJsonArray();
             //推送消息
 
 
