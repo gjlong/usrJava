@@ -317,7 +317,7 @@ public class UsrTestUtil {
             JsonArray realtimeJsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("realtime").getAsJsonArray();
             //推送消息
             for(int realtimeJsonArrayIndex=0;realtimeJsonArrayIndex<realtimeJsonArray.size();realtimeJsonArrayIndex++){
-
+                System.out.println(realtimeJsonArray.get(realtimeJsonArrayIndex).getAsString());
             }
 
             //FM.view({"ns":"plc_unlogin_home_main","domid":"plc_unlogin_home_main","css":[],"js":[],"html":"<div class=\"WB_frame_c\">\r\n
