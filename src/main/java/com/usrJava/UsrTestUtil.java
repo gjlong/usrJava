@@ -303,14 +303,10 @@ public class UsrTestUtil {
             httpGet.setConfig(requestConfig);
 
 
-            closeableHttpResponse = closeableHttpClient.execute(httpGet, httpClientContext);
-            CookieStore cookieStore = httpClientContext.getCookieStore();
-            List<Cookie> cookies = cookieStore.getCookies();
+//            closeableHttpResponse = closeableHttpClient.execute(httpGet, httpClientContext);
+//            CookieStore cookieStore = httpClientContext.getCookieStore();
+//            List<Cookie> cookies = cookieStore.getCookies();
             //发起请求，获取页面数据
-//            document = Jsoup.parse(EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312"));
-//            System.out.println(document);
-//            Elements elements = document.select("script[charset]");
-//            System.out.println(elements.html());
             String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312");
             System.out.println(opinionJsonString);
             String hotgovJsonElement=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("hotgov").getAsString();
@@ -320,6 +316,7 @@ public class UsrTestUtil {
                 String tempRealtimeString=realtimeJsonArray.get(realtimeJsonArrayIndex).getAsString();
                 System.out.println(tempRealtimeString);
             }
+
 
             //FM.view({"ns":"plc_unlogin_home_main","domid":"plc_unlogin_home_main","css":[],"js":[],"html":"<div class=\"WB_frame_c\">\r\n
             //解析该内容
