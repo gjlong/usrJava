@@ -302,28 +302,20 @@ public class UsrTestUtil {
             RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
             httpGet.setConfig(requestConfig);
 
-
-//            closeableHttpResponse = closeableHttpClient.execute(httpGet, httpClientContext);
-//            CookieStore cookieStore = httpClientContext.getCookieStore();
-//            List<Cookie> cookies = cookieStore.getCookies();
             //发起请求，获取页面数据
             String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312");
             System.out.println(opinionJsonString);
             String hotgovJsonElement=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("hotgov").getAsString();
+            System.out.println(hotgovJsonElement);
             JsonArray realtimeJsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("realtime").getAsJsonArray();
             //推送消息
             for(int realtimeJsonArrayIndex=0;realtimeJsonArrayIndex<realtimeJsonArray.size();realtimeJsonArrayIndex++){
                 String tempRealtimeString=realtimeJsonArray.get(realtimeJsonArrayIndex).getAsString();
                 System.out.println(tempRealtimeString);
             }
-
-
-            //FM.view({"ns":"plc_unlogin_home_main","domid":"plc_unlogin_home_main","css":[],"js":[],"html":"<div class=\"WB_frame_c\">\r\n
             //解析该内容
             //改用htmlunit
             WebClient webClient=new WebClient(BrowserVersion.CHROME);
-            /*webClient.getOptions().setJavaScriptEnabled(true);
-            webClient.setAjaxController(new NicelyResynchronizingAjaxController());*/
             HtmlPage htmlPage=webClient.getPage("https://weibo.com/login.php");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
             System.out.println(htmlPage.asXml());
