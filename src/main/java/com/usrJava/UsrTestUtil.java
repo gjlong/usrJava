@@ -312,13 +312,16 @@ public class UsrTestUtil {
             for(int realtimeJsonArrayIndex=0;realtimeJsonArrayIndex<realtimeJsonArray.size();realtimeJsonArrayIndex++){
                 String tempRealtimeString=realtimeJsonArray.get(realtimeJsonArrayIndex).getAsString();
                 System.out.println(tempRealtimeString);
+                //时间加上消息的格式
+
             }
-            //解析该内容
+            //模拟浏览器加载网页的方式解析该内容
             //改用htmlunit
             WebClient webClient=new WebClient(BrowserVersion.CHROME);
             HtmlPage htmlPage=webClient.getPage("https://weibo.com/login.php");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
             System.out.println(htmlPage.asXml());
+
 
 
 
