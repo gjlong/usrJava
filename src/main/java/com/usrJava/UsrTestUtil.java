@@ -309,8 +309,9 @@ public class UsrTestUtil {
             System.out.println(hotgovJsonElement);
             JsonArray realtimeJsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("realtime").getAsJsonArray();
             //推送消息
+            String tempRealtimeString;
             for(int realtimeJsonArrayIndex=0;realtimeJsonArrayIndex<realtimeJsonArray.size();realtimeJsonArrayIndex++){
-                String tempRealtimeString=realtimeJsonArray.get(realtimeJsonArrayIndex).getAsString();
+                tempRealtimeString=realtimeJsonArray.get(realtimeJsonArrayIndex).getAsString();
                 System.out.println(tempRealtimeString);
                 //时间加上消息的格式
 
