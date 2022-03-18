@@ -315,6 +315,9 @@ public class UsrTestUtil {
                 System.out.println(tempRealtimeString);
                 //时间加上消息的格式
 
+                //创建一个list
+                
+
             }
             //模拟浏览器加载网页的方式解析该内容
             //改用htmlunit
