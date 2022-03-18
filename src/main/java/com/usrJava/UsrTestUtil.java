@@ -310,13 +310,14 @@ public class UsrTestUtil {
             JsonArray realtimeJsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("realtime").getAsJsonArray();
             //推送消息
             String tempRealtimeString;
+            List<String> tempRealtimeStringList=new ArrayList();//创建一个list
             for(int realtimeJsonArrayIndex=0;realtimeJsonArrayIndex<realtimeJsonArray.size();realtimeJsonArrayIndex++){
                 tempRealtimeString=realtimeJsonArray.get(realtimeJsonArrayIndex).getAsString();
                 System.out.println(tempRealtimeString);
                 //时间加上消息的格式
+                tempRealtimeStringList.add(tempRealtimeString);
 
-                //创建一个list
-                
+
 
             }
             //模拟浏览器加载网页的方式解析该内容
