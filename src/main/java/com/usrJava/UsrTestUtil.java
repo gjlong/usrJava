@@ -320,6 +320,9 @@ public class UsrTestUtil {
 
 
             }
+            System.out.println(tempRealtimeStringList.size());
+            
+
             //模拟浏览器加载网页的方式解析该内容
             //改用htmlunit
             WebClient webClient=new WebClient(BrowserVersion.CHROME);
