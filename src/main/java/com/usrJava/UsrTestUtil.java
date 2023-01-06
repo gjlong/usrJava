@@ -276,8 +276,7 @@ public class UsrTestUtil {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-
-
+        
     }
 
     //获取新版微博
@@ -294,7 +293,6 @@ public class UsrTestUtil {
             CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
 
             CloseableHttpResponse closeableHttpResponse = null;
-
             Document document = null;
             //获取cookies
             HttpClientContext httpClientContext = HttpClientContext.create();
@@ -316,12 +314,8 @@ public class UsrTestUtil {
                 System.out.println(tempRealtimeString);
                 //时间加上消息的格式
                 tempRealtimeStringList.add(tempRealtimeString);
-
-
-
             }
             System.out.println(tempRealtimeStringList.size());
-
 
             //模拟浏览器加载网页的方式解析该内容
             //改用htmlunit
@@ -329,9 +323,6 @@ public class UsrTestUtil {
             HtmlPage htmlPage=webClient.getPage("https://weibo.com/login.php");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
             System.out.println(htmlPage.asXml());
-
-
-
 
         } catch (IOException e) {
             e.printStackTrace();
