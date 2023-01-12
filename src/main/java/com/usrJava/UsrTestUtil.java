@@ -276,7 +276,7 @@ public class UsrTestUtil {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        
+
     }
 
     //获取新版微博
@@ -329,6 +329,10 @@ public class UsrTestUtil {
         }
     }
 
+    public void test(){
+        System.out.println("run test");
+        
+    }
 
     public static void main(String[] args) {
         UsrTestUtil usrTestUtil = new UsrTestUtil();
