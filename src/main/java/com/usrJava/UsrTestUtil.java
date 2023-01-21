@@ -332,6 +332,7 @@ public class UsrTestUtil {
     //测试方法
     public void test(){
         System.out.println("run test");
+        JsonArray jsonArray=new JsonArray();
 
     }
 
