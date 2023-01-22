@@ -333,6 +333,7 @@ public class UsrTestUtil {
     public void test(){
         System.out.println("run test");
         JsonArray jsonArray=new JsonArray();
+        jsonArray.add("test1");
 
     }
 
