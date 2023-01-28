@@ -303,14 +303,14 @@ public class UsrTestUtil {
             //发起请求，获取页面数据
             String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312");
             System.out.println(opinionJsonString);
-            String hotgovJsonElement=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("hotgov").getAsString();
+            String hotgovJsonElement = JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("hotgov").getAsString();
             System.out.println(hotgovJsonElement);
-            JsonArray realtimeJsonArray=JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("realtime").getAsJsonArray();
+            JsonArray realtimeJsonArray = JsonParser.parseString(opinionJsonString).getAsJsonObject().get("data").getAsJsonObject().get("realtime").getAsJsonArray();
             //推送消息
             String tempRealtimeString;
-            List<String> tempRealtimeStringList=new ArrayList();//创建一个list
-            for(int realtimeJsonArrayIndex=0;realtimeJsonArrayIndex<realtimeJsonArray.size();realtimeJsonArrayIndex++){
-                tempRealtimeString=realtimeJsonArray.get(realtimeJsonArrayIndex).getAsString();
+            List<String> tempRealtimeStringList = new ArrayList();//创建一个list
+            for (int realtimeJsonArrayIndex = 0; realtimeJsonArrayIndex < realtimeJsonArray.size(); realtimeJsonArrayIndex++) {
+                tempRealtimeString = realtimeJsonArray.get(realtimeJsonArrayIndex).getAsString();
                 System.out.println(tempRealtimeString);
                 //时间加上消息的格式
                 tempRealtimeStringList.add(tempRealtimeString);
@@ -319,8 +319,8 @@ public class UsrTestUtil {
 
             //模拟浏览器加载网页的方式解析该内容
             //改用htmlunit
-            WebClient webClient=new WebClient(BrowserVersion.CHROME);
-            HtmlPage htmlPage=webClient.getPage("https://weibo.com/login.php");
+            WebClient webClient = new WebClient(BrowserVersion.CHROME);
+            HtmlPage htmlPage = webClient.getPage("https://weibo.com/login.php");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
             System.out.println(htmlPage.asXml());
 
@@ -330,11 +330,18 @@ public class UsrTestUtil {
     }
 
     //测试方法
-    public void test(){
+    public void test() {
         System.out.println("run test");
-        JsonArray jsonArray=new JsonArray();
+        JsonArray jsonArray = new JsonArray();
         jsonArray.add("test1");
-
+        try {
+            WebClient webClient = new WebClient(BrowserVersion.CHROME);
+            HtmlPage htmlPage = webClient.getPage("https://baidu.com/");
+            webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
+            System.out.println(htmlPage.asXml());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
