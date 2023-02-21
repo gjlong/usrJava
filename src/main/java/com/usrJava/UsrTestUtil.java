@@ -336,11 +336,11 @@ public class UsrTestUtil {
         jsonArray.add("test1");
         try {
             WebClient webClient = new WebClient(BrowserVersion.CHROME);
-            HtmlPage htmlPage = webClient.getPage("https://baidu.com/");
+            HtmlPage htmlPage = webClient.getPage("https://top.baidu.com/board?tab=realtime");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
             System.out.println(htmlPage.asXml());
             //输出网页内容
-            System.out.println(new JsonArray().get(0));
+
 
         } catch (IOException e) {
             e.printStackTrace();
