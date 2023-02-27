@@ -338,9 +338,11 @@ public class UsrTestUtil {
             WebClient webClient = new WebClient(BrowserVersion.CHROME);
             HtmlPage htmlPage = webClient.getPage("https://www.xiaohongshu.com/explore");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
-            System.out.println(htmlPage.asXml());
+            //System.out.println(htmlPage.asXml());
             //输出网页内容
             //爬取小红书
+            //https://edith.xiaohongshu.com/api/sns/web/v1/homefeed
+
 
 
 
