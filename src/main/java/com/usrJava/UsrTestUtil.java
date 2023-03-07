@@ -336,9 +336,10 @@ public class UsrTestUtil {
         jsonArray.add("test1");
         try {
             WebClient webClient = new WebClient(BrowserVersion.CHROME);
+            webClient.getOptions().setThrowExceptionOnScriptError(false);
             HtmlPage htmlPage = webClient.getPage("https://www.xiaohongshu.com/explore");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
-            webClient.getOptions().setThrowExceptionOnScriptError(false);
+
             System.out.println(htmlPage.asXml());
             //输出网页内容
             //爬取小红书
