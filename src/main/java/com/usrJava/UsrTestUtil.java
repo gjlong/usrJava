@@ -336,7 +336,7 @@ public class UsrTestUtil {
         jsonArray.add("test1");
         try {
             WebClient webClient = new WebClient(BrowserVersion.CHROME);
-            webClient.getOptions().setThrowExceptionOnScriptError(false);
+            webClient.getOptions().setThrowExceptionOnScriptError(false);//忽略js报错
             HtmlPage htmlPage = webClient.getPage("https://www.xiaohongshu.com/explore");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
 
@@ -344,6 +344,9 @@ public class UsrTestUtil {
             //输出网页内容
             //爬取小红书
             //https://edith.xiaohongshu.com/api/sns/web/v1/homefeed
+            //https://www.xiaohongshu.com/explore
+            //https://www.douyin.com/hot
+
 
 
 
