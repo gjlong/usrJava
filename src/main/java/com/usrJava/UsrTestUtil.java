@@ -17,6 +17,7 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.conn.routing.HttpRoute;
 import org.apache.http.cookie.Cookie;
@@ -335,20 +336,37 @@ public class UsrTestUtil {
         JsonArray jsonArray = new JsonArray();
         jsonArray.add("test1");
         try {
-            WebClient webClient = new WebClient(BrowserVersion.CHROME);
+             /*WebClient webClient = new WebClient(BrowserVersion.CHROME);
             webClient.getOptions().setThrowExceptionOnScriptError(false);//忽略js报错
-            HtmlPage htmlPage = webClient.getPage("https://www.xiaohongshu.com/explore");
+            HtmlPage htmlPage = webClient.getPage("https://www.douyin.com/hot");
             webClient.waitForBackgroundJavaScript(1000);//等待异步js执行完毕，否则不会生成数据dom格式
 
-            System.out.println(htmlPage.asXml());
+            System.out.println(htmlPage.asXml());*/
             //输出网页内容
             //爬取小红书
             //https://edith.xiaohongshu.com/api/sns/web/v1/homefeed
             //https://www.xiaohongshu.com/explore
             //https://www.douyin.com/hot
+            String url = "https://edith.xiaohongshu.com/api/sns/web/v1/homefeed";//直接获取热搜接口的数据
+            String hostname = url;
+            Map<String, String> contentMap = new HashMap<>();
+            PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+            cm.setMaxTotal(200);
+            cm.setDefaultMaxPerRoute(20);
+            HttpHost localhost = new HttpHost(hostname, 80);
+            cm.setMaxPerRoute(new HttpRoute(localhost), 50);
+            CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
 
-
-
+            CloseableHttpResponse closeableHttpResponse = null;
+            Document document = null;
+            //获取cookies
+            HttpClientContext httpClientContext = HttpClientContext.create();
+            HttpPost httpGet = new HttpPost(url);
+            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+            httpGet.setConfig(requestConfig);
+            //发起请求，获取页面数据
+            String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(new HttpGet(url)).getEntity(), "gb2312");
+            System.out.println(opinionJsonString);
 
 
         } catch (IOException e) {
