@@ -347,7 +347,7 @@ public class UsrTestUtil {
             //https://edith.xiaohongshu.com/api/sns/web/v1/homefeed
             //https://www.xiaohongshu.com/explore
             //https://www.douyin.com/hot
-            String url = "https://edith.xiaohongshu.com/api/sns/web/v1/homefeed";//直接获取热搜接口的数据
+            String url = "https://www.xiaohongshu.com/explore";//直接获取热搜接口的数据
             String hostname = url;
             Map<String, String> contentMap = new HashMap<>();
             PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
@@ -361,7 +361,7 @@ public class UsrTestUtil {
             Document document = null;
             //获取cookies
             HttpClientContext httpClientContext = HttpClientContext.create();
-            HttpPost httpGet = new HttpPost(url);
+            HttpGet httpGet = new HttpGet(url);
             RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
             httpGet.setConfig(requestConfig);
             //发起请求，获取页面数据
