@@ -356,9 +356,7 @@ public class UsrTestUtil {
             HttpHost localhost = new HttpHost(hostname, 80);
             cm.setMaxPerRoute(new HttpRoute(localhost), 50);
             CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
-
-            CloseableHttpResponse closeableHttpResponse = null;
-            Document document = null;
+            
             //获取cookies
             HttpClientContext httpClientContext = HttpClientContext.create();
             HttpGet httpGet = new HttpGet(url);
