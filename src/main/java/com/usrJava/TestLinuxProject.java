@@ -22,4 +22,8 @@ public class TestLinuxProject {
         log.error("测试log error");
         log.info(logContent);
     }
+
+    public static void main(String[] args) {
+        System.out.println("run");
+    }
 }
