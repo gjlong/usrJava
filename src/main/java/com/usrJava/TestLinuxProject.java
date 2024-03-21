@@ -27,7 +27,8 @@ public class TestLinuxProject {
     public static void main(String[] args) {
         System.out.println("run");
         //生成token
-        DigestUtils.sha1Hex("")
+        String testString="test";
+        System.out.println(DigestUtils.sha1Hex(testString));
 
     }
 }
