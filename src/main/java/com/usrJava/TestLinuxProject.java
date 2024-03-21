@@ -2,6 +2,7 @@ package com.usrJava;
 
 import com.testJavaseMybatis.service.UrlsService;
 import com.testJavaseMybatis.service.impl.UrlsServiceImpl;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +27,7 @@ public class TestLinuxProject {
     public static void main(String[] args) {
         System.out.println("run");
         //生成token
-        
+        DigestUtils.sha1Hex("")
+
     }
 }
