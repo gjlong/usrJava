@@ -29,7 +29,7 @@ public class TestLinuxProject {
         log.info("测试log info");
         log.error("测试log error");
         log.info(logContent);
-        System.out.println(UUID.randomUUID().toString());
+        System.out.println(UUID.randomUUID().toString().replaceAll("-",""));
     }
 
 
