@@ -1,16 +1,35 @@
 package com.usrJava;
 
+import com.google.gson.JsonObject;
 import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
 import com.testJavaseMybatis.service.UrlsService;
 import com.testJavaseMybatis.service.impl.UrlsServiceImpl;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.conn.routing.HttpRoute;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
+import java.io.IOException;
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -32,5 +51,10 @@ public class TestLinuxProject {
         System.out.println(UUID.randomUUID().toString().replaceAll("-",""));
     }
 
+
+
+    public static void main(String[] args) {
+
+    }
 
 }
