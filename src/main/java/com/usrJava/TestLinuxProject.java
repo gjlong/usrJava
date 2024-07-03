@@ -49,12 +49,18 @@ public class TestLinuxProject {
         log.error("测试log error");
         log.info(logContent);
         System.out.println(UUID.randomUUID().toString().replaceAll("-",""));
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+        cm.setMaxTotal(200);
+        cm.setDefaultMaxPerRoute(20);
+        String hostname = "http://localhost:8080";
+        HttpHost localhost = new HttpHost(hostname, 80);
+        cm.setMaxPerRoute(new HttpRoute(localhost), 50);
     }
 
 
 
     public static void main(String[] args) {
-
+        
     }
 
 }
