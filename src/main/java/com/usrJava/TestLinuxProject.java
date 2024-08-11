@@ -60,7 +60,8 @@ public class TestLinuxProject {
 
 
     public static void main(String[] args) {
-        
+        TestLinuxProject testLinuxProject=new TestLinuxProject();
+        testLinuxProject.testLog("");
     }
 
 }
