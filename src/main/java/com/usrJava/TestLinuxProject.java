@@ -55,6 +55,9 @@ public class TestLinuxProject {
         String hostname = "http://localhost:8080";
         HttpHost localhost = new HttpHost(hostname, 80);
         cm.setMaxPerRoute(new HttpRoute(localhost), 50);
+        CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+
     }
 
 
