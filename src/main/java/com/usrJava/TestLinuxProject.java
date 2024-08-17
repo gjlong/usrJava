@@ -12,6 +12,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.conn.routing.HttpRoute;
@@ -57,7 +58,14 @@ public class TestLinuxProject {
         cm.setMaxPerRoute(new HttpRoute(localhost), 50);
         CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
         RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
-
+        HttpPost httpGet = new HttpPost("");
+        httpGet.setConfig(requestConfig);
+        HttpClientContext httpClientContext = HttpClientContext.create();
+        try {
+            CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet, httpClientContext);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
