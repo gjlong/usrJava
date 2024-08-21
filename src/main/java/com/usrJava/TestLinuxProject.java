@@ -22,6 +22,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,7 +64,7 @@ public class TestLinuxProject {
         HttpClientContext httpClientContext = HttpClientContext.create();
         try {
             CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpPost, httpClientContext);
-            
+            Jsoup.parse(EntityUtils.toString(closeableHttpResponse.getEntity(), "gb2312"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
