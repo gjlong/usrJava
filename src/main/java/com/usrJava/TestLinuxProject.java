@@ -58,11 +58,12 @@ public class TestLinuxProject {
         cm.setMaxPerRoute(new HttpRoute(localhost), 50);
         CloseableHttpClient closeableHttpClient = HttpClients.custom().setConnectionManager(cm).setUserAgent("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0").build();
         RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
-        HttpPost httpGet = new HttpPost("");
-        httpGet.setConfig(requestConfig);
+        HttpPost httpPost = new HttpPost("");
+        httpPost.setConfig(requestConfig);
         HttpClientContext httpClientContext = HttpClientContext.create();
         try {
-            CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet, httpClientContext);
+            CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpPost, httpClientContext);
+            
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
