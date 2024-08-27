@@ -68,6 +68,7 @@ public class TestLinuxProject {
             Document document = Jsoup.parse(EntityUtils.toString(closeableHttpResponse.getEntity(), "gb2312"));
             System.out.println(document);
             log.info("document");
+            document.getElementsByAttribute("body");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
