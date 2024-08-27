@@ -77,7 +77,6 @@ public class TestLinuxProject {
                 for (Element temp : t.select("a")) {
                     System.out.println(temp.attr("href"));
                     System.out.println(temp.text());
-                    //System.out.println(temp.html());
                 }
             }
         } catch (IOException e) {
