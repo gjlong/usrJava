@@ -24,6 +24,8 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +70,16 @@ public class TestLinuxProject {
             Document document = Jsoup.parse(EntityUtils.toString(closeableHttpResponse.getEntity(), "gb2312"));
             System.out.println(document);
             log.info("document");
-            document.getElementsByAttribute("body");
+            Elements bodyElements=document.getElementsByAttribute("body");
+            Elements elements = document.getElementsByClass("wrapCon").first().getElementsByClass("rightFirNews");
+            //右侧新闻
+            for (Element t : elements) {
+                for (Element temp : t.select("a")) {
+                    System.out.println(temp.attr("href"));
+                    System.out.println(temp.text());
+                    //System.out.println(temp.html());
+                }
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
