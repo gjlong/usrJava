@@ -80,6 +80,8 @@ public class TestLinuxProject {
                     log.info(temp.text());
                 }
             }
+            log.info("bodyElements",bodyElements);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
