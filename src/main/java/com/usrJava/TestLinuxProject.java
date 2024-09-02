@@ -33,9 +33,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.security.Key;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * *@ClassName: TestLinuxProject
@@ -81,6 +79,8 @@ public class TestLinuxProject {
                 }
             }
             log.info("bodyElements",bodyElements);
+            Map<String, String> contentMap = new HashMap<>();
+            Iterator<Map.Entry<String, String>> entries = contentMap.entrySet().iterator();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
