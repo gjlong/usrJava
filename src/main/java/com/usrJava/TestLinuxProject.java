@@ -81,8 +81,10 @@ public class TestLinuxProject {
             log.info("bodyElements",bodyElements);
             Map<String, String> contentMap = new HashMap<>();
             Iterator<Map.Entry<String, String>> entries = contentMap.entrySet().iterator();
+            
 
         } catch (IOException e) {
+            log.error(e);
             throw new RuntimeException(e);
         }
     }
