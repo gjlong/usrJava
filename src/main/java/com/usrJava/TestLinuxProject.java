@@ -84,7 +84,7 @@ public class TestLinuxProject {
             
 
         } catch (IOException e) {
-            log.error(e);
+            log.error(e.toString());
             throw new RuntimeException(e);
         }
     }
