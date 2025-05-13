@@ -97,8 +97,19 @@ public class TestLinuxProject {
         }
     }
 
+
     
 
+    public static String formattedChineseDate(String dateStr) {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        // 解析输入字符串为 LocalDate
+        LocalDate date = LocalDate.parse(dateStr, inputFormatter);
+        // 定义输出格式
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        // 格式化为目标格式
+        String formattedDate = date.format(outputFormatter);
+        return formattedDate;
+    }
 
     public static String formattedEnglishDate(String dateStr) {
         DateTimeFormatter inputFormatter = new DateTimeFormatterBuilder()
