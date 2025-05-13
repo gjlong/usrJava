@@ -99,12 +99,7 @@ public class TestLinuxProject {
 
 
     public void makeString(){
-        String s="From 08/04/2025 to 07/04/2026 (both dates inclusive)";
-        //String s="07-MAY-202500:00 至 06-MAY-2026";
-        //String s="07-MAY-202500:00 至 06-MAY-2026 (起迄兩日均包括在內)";
-        //String s="From 1/6/2024 to 31/5/2025 (Both dates inclusive)";
-        //String s="從 1/6/2024 至 31/5/2025 (含兩端日期)";
-        //String s="從 1/6/2024 至 31/5/2025 (Both dates inclusive)";
+        
 
         //去掉括号内容
         while (s.contains("(") && s.contains(")")) {
