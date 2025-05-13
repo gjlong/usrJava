@@ -98,7 +98,43 @@ public class TestLinuxProject {
     }
 
 
-    
+    public void makeString(){
+        String s="From 08/04/2025 to 07/04/2026 (both dates inclusive)";
+        //String s="07-MAY-202500:00 至 06-MAY-2026";
+        //String s="07-MAY-202500:00 至 06-MAY-2026 (起迄兩日均包括在內)";
+        //String s="From 1/6/2024 to 31/5/2025 (Both dates inclusive)";
+        //String s="從 1/6/2024 至 31/5/2025 (含兩端日期)";
+        //String s="從 1/6/2024 至 31/5/2025 (Both dates inclusive)";
+
+        //去掉括号内容
+        while (s.contains("(") && s.contains(")")) {
+            int start = s.indexOf("(");
+            int end = s.indexOf(")");
+            s = s.substring(0, start) + s.substring(end + 1);
+        }
+        System.out.println(s);
+        if (s.contains(" to ")) { //假如存在to，按to分割前后日期
+            //去掉From
+            // 不区分大小写地移除"From"并修剪空白
+            s = s.replaceAll("(?i)from", "").trim();//去掉"from"
+            String[] parts = s.split("\\s+to\\s+");
+            for (String part : parts) {
+                System.out.println(part);
+            }
+        }else if(s.contains("至")){ //假如存在"至"，按“至”分割前后日期
+            s = s.replaceAll("(?i)從", "").trim();//去掉"從"
+            String[] parts = s.split("\\s+至\\s+");
+            for (int p=0;p<parts.length;p++) {
+                parts[p] = parts[p].replaceAll("(\\d{2}-[A-Z]{3}-\\d{4}).*", "$1");//去掉时分秒，只保留日期
+                //System.out.println(parts[p]);
+                parts[p]=formattedEnglishDate(parts[p]);
+                System.out.println(parts[p]);
+
+            }
+
+        }
+
+    }
 
     public static String formattedChineseDate(String dateStr) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
