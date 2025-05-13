@@ -1,23 +1,23 @@
 package com.usrJava;
 
+import com.aliyun.ocr_api20210707.Client;
+import com.aliyun.ocr_api20210707.models.*;
+import com.aliyun.tea.*;
+import com.aliyun.teaopenapi.models.Config;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
+import com.google.gson.JsonParser;
 import com.testJavaseMybatis.service.UrlsService;
 import com.testJavaseMybatis.service.impl.UrlsServiceImpl;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.http.HttpEntity;
+import net.sf.json.JSONObject;
+import net.sf.json.util.JSONUtils;
 import org.apache.http.HttpHost;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.conn.routing.HttpRoute;
-import org.apache.http.cookie.Cookie;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -28,12 +28,20 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.security.Key;
+import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.format.TextStyle;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * *@ClassName: TestLinuxProject
@@ -89,13 +97,32 @@ public class TestLinuxProject {
         }
     }
 
-    //测试orc分类内容
+    
 
 
+    public static String formattedEnglishDate(String dateStr) {
+        DateTimeFormatter inputFormatter = new DateTimeFormatterBuilder()
+                .parseCaseInsensitive() // 忽略大小写
+                .appendPattern("dd-")
+                .appendText(java.time.temporal.ChronoField.MONTH_OF_YEAR, TextStyle.SHORT)
+                .appendPattern("-yyyy")
+                .toFormatter(Locale.ENGLISH);
+        try {
+            // 解析输入字符串为 LocalDate
+            LocalDate date = LocalDate.parse(dateStr, inputFormatter);
+            // 定义输出格式
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            // 格式化为目标格式
+            String formattedDate = date.format(outputFormatter);
+            return formattedDate;
+        } catch (DateTimeParseException e) {
+            return dateStr;
+        }
+    }
 
     public static void main(String[] args) {
         TestLinuxProject testLinuxProject=new TestLinuxProject();
-        testLinuxProject.testLog("");
+        testLinuxProject.formattedEnglishDate("1/6/2024");
     }
 
 }
