@@ -101,8 +101,7 @@ public class TestLinuxProject {
     /**
      * 提取日期字符串内容
      */
-    public void makeString(){
-
+    public void makeString(String s){
 
         //去掉括号内容
         while (s.contains("(") && s.contains(")")) {
