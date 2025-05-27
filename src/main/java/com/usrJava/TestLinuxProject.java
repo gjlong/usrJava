@@ -164,8 +164,18 @@ public class TestLinuxProject {
         }
     }
 
-    //添加ocr方法
-
+    //添加阿里云ocr方法
+    public static com.aliyun.ocr_api20210707.Client createClient() throws Exception {
+        String accesskeyid="accesskeyid";
+        String accesssecret="accesssecret";
+        com.aliyun.teaopenapi.models.Config config = new com.aliyun.teaopenapi.models.Config()
+                // 必填，请确保代码运行环境设置了环境变量 ALIBABA_CLOUD_ACCESS_KEY_ID。
+                .setAccessKeyId(accesskeyid)
+                // 必填，请确保代码运行环境设置了环境变量 ALIBABA_CLOUD_ACCESS_KEY_SECRET。
+                .setAccessKeySecret(accesssecret);
+        config.endpoint = "ocr-api.cn-hangzhou.aliyuncs.com";
+        return new com.aliyun.ocr_api20210707.Client(config);
+    }
 
     public static void main(String[] args) {
         TestLinuxProject testLinuxProject=new TestLinuxProject();
