@@ -164,6 +164,9 @@ public class TestLinuxProject {
         }
     }
 
+    //添加ocr方法
+
+
     public static void main(String[] args) {
         TestLinuxProject testLinuxProject=new TestLinuxProject();
         testLinuxProject.formattedEnglishDate("1/6/2024");
