@@ -178,6 +178,67 @@ public class TestLinuxProject {
         return new com.aliyun.ocr_api20210707.Client(config);
     }
 
+    
+    public void ocrInsurance() {
+        final String endpoint = "ocr-api.cn-hangzhou.aliyuncs.com";
+        final String accessKeyID = "accessKeyID";
+        final String accessKeySecret = "accessKeySecret";
+        final Config config = new Config().setEndpoint(endpoint).setAccessKeyId(accessKeyID).setAccessKeySecret(accessKeySecret);
+        final String localImageFileName = "/src/main/resources/images/example.jpg";
+
+        Client client = null;
+        try {
+            client = new Client(config);
+
+            InputStream imageStream = new FileInputStream(localImageFileName);
+            RecognizeGeneralStructureRequest recognizeGeneralStructureRequest=new RecognizeGeneralStructureRequest();
+            List<String> keys=new ArrayList<>();
+
+            keys.add("header");
+            keys.add("PolicyholderName");
+            keys.add("PolicyNo.");
+            keys.add("PeriodofInsurance");
+
+            recognizeGeneralStructureRequest.setBody(imageStream).setKeys(keys);
+            RecognizeGeneralStructureResponse response = client.recognizeGeneralStructure(recognizeGeneralStructureRequest);
+            String jsonString = new Gson().toJson(response.getBody().getData().toMap());
+            System.out.println(jsonString);
+            JsonObject ocrResult=JsonParser.parseString(jsonString).getAsJsonObject().get("SubImages").getAsJsonArray().get(0).getAsJsonObject().get("KvInfo").getAsJsonObject().get("Data").getAsJsonObject();
+            // 遍历所有属性
+            JsonObject insuranceObject=new JsonObject();
+
+            for(int i=0;i<keys.size();i++){
+                String key=keys.get(i);
+                System.out.println(ocrResult.get(key));
+                switch (i){
+                    case 0:
+                        insuranceObject.add("company",ocrResult.get(key));
+                        break;
+                    case 1:
+                        insuranceObject.add("username",ocrResult.get(key));
+                        break;
+                    case 2:
+                        insuranceObject.add("policyNo",ocrResult.get(key));
+                        break;
+                    case 3:
+                        insuranceObject.add("date",ocrResult.get(key));
+                        break;
+                }
+            }
+            System.out.println(insuranceObject.toString());
+
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+    }
+
     public static void main(String[] args) {
         TestLinuxProject testLinuxProject=new TestLinuxProject();
         testLinuxProject.formattedEnglishDate("1/6/2024");
