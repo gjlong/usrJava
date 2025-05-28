@@ -165,6 +165,7 @@ public class TestLinuxProject {
     }
 
     //添加阿里云ocr方法
+    //创建接口请求客户端
     public static com.aliyun.ocr_api20210707.Client createClient() throws Exception {
         String accesskeyid="accesskeyid";
         String accesssecret="accesssecret";
