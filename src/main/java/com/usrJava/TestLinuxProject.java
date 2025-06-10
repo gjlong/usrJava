@@ -185,10 +185,9 @@ public class TestLinuxProject {
 //        final String accessKeySecret = "accessKeySecret";
 //        final Config config = new Config().setEndpoint(endpoint).setAccessKeyId(accessKeyID).setAccessKeySecret(accessKeySecret);
         final String localImageFileName = "/src/main/resources/images/example.jpg";
-
-        Client client = null;
+        
         try {
-            client = createClient();
+            Client client = createClient();
 
             InputStream imageStream = new FileInputStream(localImageFileName);
             RecognizeGeneralStructureRequest recognizeGeneralStructureRequest=new RecognizeGeneralStructureRequest();
