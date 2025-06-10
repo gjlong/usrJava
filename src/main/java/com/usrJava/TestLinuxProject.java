@@ -183,7 +183,7 @@ public class TestLinuxProject {
         final String localImageFileName = "/src/main/resources/images/example.jpg";
         try {
             Client client = createClient();
-
+            //加载测试图片
             InputStream imageStream = new FileInputStream(localImageFileName);
             RecognizeGeneralStructureRequest recognizeGeneralStructureRequest=new RecognizeGeneralStructureRequest();
             List<String> keys=new ArrayList<>();
@@ -220,8 +220,6 @@ public class TestLinuxProject {
                 }
             }
             System.out.println(insuranceObject.toString());
-
-
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
