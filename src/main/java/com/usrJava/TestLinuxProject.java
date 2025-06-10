@@ -178,7 +178,7 @@ public class TestLinuxProject {
         return new com.aliyun.ocr_api20210707.Client(config);
     }
 
-    
+    //表格识别方法
     public void ocrInsurance() {
         final String endpoint = "ocr-api.cn-hangzhou.aliyuncs.com";
         final String accessKeyID = "accessKeyID";
