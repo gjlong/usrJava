@@ -180,12 +180,7 @@ public class TestLinuxProject {
 
     //表格识别方法
     public void ocrInsurance() {
-//        final String endpoint = "ocr-api.cn-hangzhou.aliyuncs.com";
-//        final String accessKeyID = "accessKeyID";
-//        final String accessKeySecret = "accessKeySecret";
-//        final Config config = new Config().setEndpoint(endpoint).setAccessKeyId(accessKeyID).setAccessKeySecret(accessKeySecret);
         final String localImageFileName = "/src/main/resources/images/example.jpg";
-        
         try {
             Client client = createClient();
 
