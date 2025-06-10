@@ -133,6 +133,11 @@ public class TestLinuxProject {
 
     }
 
+    /**
+     * 把国际日期格式转换成国内日期格式
+     * @param dateStr
+     * @return
+     */
     public static String formattedChineseDate(String dateStr) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         // 解析输入字符串为 LocalDate
@@ -144,6 +149,11 @@ public class TestLinuxProject {
         return formattedDate;
     }
 
+    /**
+     * 把英文月份的日期格式转换成普通日期格式
+     * @param dateStr
+     * @return
+     */
     public static String formattedEnglishDate(String dateStr) {
         DateTimeFormatter inputFormatter = new DateTimeFormatterBuilder()
                 .parseCaseInsensitive() // 忽略大小写
