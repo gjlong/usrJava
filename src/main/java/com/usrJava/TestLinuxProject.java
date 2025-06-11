@@ -241,6 +241,10 @@ public class TestLinuxProject {
 
     }
 
+    public void ocrCar() {
+        
+    }
+
     public static void main(String[] args) {
         TestLinuxProject testLinuxProject=new TestLinuxProject();
         testLinuxProject.formattedEnglishDate("1/6/2024");
