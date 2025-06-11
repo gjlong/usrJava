@@ -242,7 +242,10 @@ public class TestLinuxProject {
     }
 
     public void ocrCar() {
-        
+        final String endpoint = "ocr-api.cn-hangzhou.aliyuncs.com";
+        final String accessKeyID = "accessKeyID";
+        final String accessKeySecret = "accessKeySecret";
+        final Config config = new Config().setEndpoint(endpoint).setAccessKeyId(accessKeyID).setAccessKeySecret(accessKeySecret);
     }
 
     public static void main(String[] args) {
