@@ -246,6 +246,16 @@ public class TestLinuxProject {
         final String accessKeyID = "accessKeyID";
         final String accessKeySecret = "accessKeySecret";
         final Config config = new Config().setEndpoint(endpoint).setAccessKeyId(accessKeyID).setAccessKeySecret(accessKeySecret);
+        final String localImageFileName = "/src/main/resources/images/example.jpg"; // 本地图片路径
+        Client client = null;
+        try {
+            client = new Client(config);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    
     }
 
     public static void main(String[] args) {
