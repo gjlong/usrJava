@@ -245,17 +245,48 @@ public class TestLinuxProject {
         final String endpoint = "ocr-api.cn-hangzhou.aliyuncs.com";
         final String accessKeyID = "accessKeyID";
         final String accessKeySecret = "accessKeySecret";
-        final Config config = new Config().setEndpoint(endpoint).setAccessKeyId(accessKeyID).setAccessKeySecret(accessKeySecret);
+        //final Config config = new Config().setEndpoint(endpoint).setAccessKeyId(accessKeyID).setAccessKeySecret(accessKeySecret);
         final String localImageFileName = "/src/main/resources/images/example.jpg"; // 本地图片路径
-        Client client = null;
         try {
-            client = new Client(config);
+            Client client = createClient();
+            try (InputStream imageStream = new FileInputStream(localImageFileName)) {
+                RecognizeAllTextRequest request = new RecognizeAllTextRequest()
+                        .setType("Advanced")        // 指定 Type（此参数为必填参数）
+                        .setBody(imageStream)       // 指定本地图片路径
+                        .setOutputOricoord(true);   // 设置返回原图坐标。您可以设置更多二级参数。
+                // 您也可以在 request 中指定更多参数。例如对于 Type=Advanced，可以指定 OutputCharInfo=true（输出单字信息）
+                RecognizeAllTextRequest.RecognizeAllTextRequestAdvancedConfig advancedConfig = new RecognizeAllTextRequest.RecognizeAllTextRequestAdvancedConfig()
+                        .setIsLineLessTable(false)
+                        .setOutputTable(true);
+                //.setOutputCharInfo(true);
+                request.setAdvancedConfig(advancedConfig);
+                RecognizeAllTextResponse response = client.recognizeAllText(request);
+                String jsonString=new Gson().toJson(response.getBody().getData().toMap());
+                JsonArray jsonArray= JsonParser.parseString(jsonString).getAsJsonObject().getAsJsonArray("SubImages").get(0).getAsJsonObject().getAsJsonObject("TableInfo").getAsJsonArray("TableDetails").get(0).getAsJsonObject().get("CellDetails").getAsJsonArray();
+                for(int i=0;i<jsonArray.size();i++){
 
+                    String contentString=jsonArray.get(i).getAsJsonObject().get("CellContent").getAsString();
+                    String index=String.valueOf(i+1);
+                    if(contentString.startsWith(index)==true){
+                        contentString=contentString.substring(index.length());
+                    }
+                    System.out.println(contentString);
+                }
+                //System.out.println(new Gson().toJson(response.getBody().getData().toMap()));
+
+            } catch (TeaException e) {
+                System.out.println(e.getStatusCode());
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
+
     }
 
     public static void main(String[] args) {
