@@ -243,7 +243,6 @@ public class TestLinuxProject {
 
     public void ocrCar() {
         final String localImageFileName = "/src/main/resources/images/example.jpg"; // 本地图片路径
-
         try (InputStream imageStream = new FileInputStream(localImageFileName)) {
             RecognizeAllTextRequest request = new RecognizeAllTextRequest()
                     .setType("Advanced")        // 指定 Type（此参数为必填参数）
@@ -253,7 +252,6 @@ public class TestLinuxProject {
             RecognizeAllTextRequest.RecognizeAllTextRequestAdvancedConfig advancedConfig = new RecognizeAllTextRequest.RecognizeAllTextRequestAdvancedConfig()
                     .setIsLineLessTable(false)
                     .setOutputTable(true);
-            //.setOutputCharInfo(true);
             request.setAdvancedConfig(advancedConfig);
             Client client = createClient();
             RecognizeAllTextResponse response = client.recognizeAllText(request);
@@ -267,7 +265,6 @@ public class TestLinuxProject {
                 }
                 System.out.println(contentString);
             }
-            //System.out.println(new Gson().toJson(response.getBody().getData().toMap()));
 
         } catch (TeaException e) {
             System.out.println(e.getStatusCode());
