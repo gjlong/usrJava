@@ -241,6 +241,7 @@ public class TestLinuxProject {
 
     }
 
+    //驾驶证识别方法
     public void ocrCar() {
         final String localImageFileName = "/src/main/resources/images/example.jpg"; // 本地图片路径
         try (InputStream imageStream = new FileInputStream(localImageFileName)) {
@@ -277,7 +278,6 @@ public class TestLinuxProject {
         catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {
