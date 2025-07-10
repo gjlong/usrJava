@@ -280,7 +280,7 @@ public class TestLinuxProject {
         }
     }
 
-    //自动下载爬虫
+    //自动爬取最新数据
 
     public static void main(String[] args) {
         TestLinuxProject testLinuxProject=new TestLinuxProject();
