@@ -282,7 +282,8 @@ public class TestLinuxProject {
 
     //自动爬取最新数据 爬取文章内容
     public static String getArticleContent(){
-        
+        //微信公众号文章地址
+        return "";
     }
 
     public static void main(String[] args) {
