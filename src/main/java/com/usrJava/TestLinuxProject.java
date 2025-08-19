@@ -283,6 +283,9 @@ public class TestLinuxProject {
     //自动爬取最新数据 爬取文章内容
     public static String getArticleContent(){
         //微信公众号文章地址
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+        cm.setMaxTotal(200);
+        cm.setDefaultMaxPerRoute(10);
         return "";
     }
 
