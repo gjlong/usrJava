@@ -286,6 +286,13 @@ public class TestLinuxProject {
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
         cm.setMaxTotal(200);
         cm.setDefaultMaxPerRoute(10);
+        Client client = null;
+        try {
+            client = createClient();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        RecognizeAllTextRequest request = new RecognizeAllTextRequest();
         RecognizeAllTextResponse response = client.recognizeAllText(request);
         String jsonString=new Gson().toJson(response.getBody().getData().toMap());
         return "";
