@@ -295,6 +295,7 @@ public class TestLinuxProject {
         RecognizeAllTextRequest request = new RecognizeAllTextRequest();
         RecognizeAllTextResponse response = client.recognizeAllText(request);
         String jsonString=new Gson().toJson(response.getBody().getData().toMap());
+        System.out.println(jsonString);
         return "";
     }
 
