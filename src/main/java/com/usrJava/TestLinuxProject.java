@@ -293,7 +293,12 @@ public class TestLinuxProject {
             throw new RuntimeException(e);
         }
         RecognizeAllTextRequest request = new RecognizeAllTextRequest();
-        RecognizeAllTextResponse response = client.recognizeAllText(request);
+        RecognizeAllTextResponse response = null;
+        try {
+            response = client.recognizeAllText(request);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         String jsonString=new Gson().toJson(response.getBody().getData().toMap());
         System.out.println(jsonString);
         return "";
