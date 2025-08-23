@@ -289,18 +289,14 @@ public class TestLinuxProject {
         Client client = null;
         try {
             client = createClient();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        RecognizeAllTextRequest request = new RecognizeAllTextRequest();
-        RecognizeAllTextResponse response = null;
-        try {
+            RecognizeAllTextRequest request = new RecognizeAllTextRequest();
+            RecognizeAllTextResponse response = null;
             response = client.recognizeAllText(request);
+            String jsonString=new Gson().toJson(response.getBody().getData().toMap());
+            System.out.println(jsonString);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        String jsonString=new Gson().toJson(response.getBody().getData().toMap());
-        System.out.println(jsonString);
         return "";
     }
 
