@@ -290,6 +290,7 @@ public class TestLinuxProject {
         try {
             client = createClient();
             RecognizeAllTextRequest request = new RecognizeAllTextRequest();
+            HttpHost localhost = new HttpHost("", 443);
             RecognizeAllTextResponse response = null;
             response = client.recognizeAllText(request);
             String jsonString=new Gson().toJson(response.getBody().getData().toMap());
