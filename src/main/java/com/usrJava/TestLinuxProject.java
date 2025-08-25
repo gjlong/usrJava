@@ -295,9 +295,8 @@ public class TestLinuxProject {
             RecognizeAllTextResponse response = null;
             response = client.recognizeAllText(request);
             String jsonString=new Gson().toJson(response.getBody().getData().toMap());
-            System.out.println(jsonString);
-            String opinionJsonString = EntityUtils.toString(closeableHttpClient.execute(httpGet).getEntity(), "gb2312");
-            Document document = Jsoup.parse(opinionJsonString, url);
+
+            Document document = Jsoup.parse(jsonString, url);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
