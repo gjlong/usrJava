@@ -12,6 +12,7 @@ import com.testJavaseMybatis.service.UrlsService;
 import com.testJavaseMybatis.service.impl.UrlsServiceImpl;
 import net.sf.json.JSONObject;
 import net.sf.json.util.JSONUtils;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -31,10 +32,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -296,7 +294,7 @@ public class TestLinuxProject {
             response = client.recognizeAllText(request);
             String jsonString=new Gson().toJson(response.getBody().getData().toMap());
             String url="wechat";
-            Document document = Jsoup.parse(jsonString, url);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
