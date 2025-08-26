@@ -295,7 +295,7 @@ public class TestLinuxProject {
             RecognizeAllTextResponse response = null;
             response = client.recognizeAllText(request);
             String jsonString=new Gson().toJson(response.getBody().getData().toMap());
-
+            String url="wechat";
             Document document = Jsoup.parse(jsonString, url);
         } catch (Exception e) {
             throw new RuntimeException(e);
