@@ -296,6 +296,9 @@ public class TestLinuxProject {
             String imageUrlTemp = JsonParser.parseString(jsonString).getAsJsonObject().get("murl").getAsString();
             String url="wechat";
             System.out.println(imageUrlTemp);
+            if(imageUrlTemp.equals(url)==true){
+                
+            }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
