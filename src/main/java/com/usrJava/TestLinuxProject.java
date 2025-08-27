@@ -294,10 +294,9 @@ public class TestLinuxProject {
             response = client.recognizeAllText(request);
             String jsonString=new Gson().toJson(response.getBody().getData().toMap());
             String imageUrlTemp = JsonParser.parseString(jsonString).getAsJsonObject().get("murl").getAsString();
-            String url="wechat";
-            System.out.println(imageUrlTemp);
+            String url="wechat";//示例url
             if(imageUrlTemp.equals(url)==true){
-                
+                System.out.println(imageUrlTemp);
             }
 
         } catch (Exception e) {
